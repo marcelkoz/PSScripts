@@ -1,0 +1,8 @@
+{
+    "BackupPath": "$HOME/Documents/GameBackups",
+
+    "GameSaves": {
+        "Minecraft": "$HOME/AppData/Roaming/.minecraft/saves",
+        "Stardew Valley": "$HOME/AppData/Roaming/StardewValley/Saves"
+    }
+}
