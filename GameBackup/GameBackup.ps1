@@ -11,7 +11,14 @@ $Global = @{
 	'BrowserPath'  = "$ProgFiles/Google/Chrome/Application/chrome.exe"
 	'FolderURL'    = 'https://drive.google.com/drive/folders/1u-OJ5bVZ0Gaf2Ew-FCCtEtXF74drXao4'
 }
-
+#
+# TODO: add support for backing up settings e.g. openttd
+# For game saves instead of using object use object containing an object with 'game' and 'settings' fields
+#
+#
+#
+#
+#
 $PathVars = @{
 	'$HOME'     = $HOME
 	'$ROAMING'  = $env:APPDATA
@@ -80,7 +87,7 @@ function main
 	$BackupGame = Read-MultipleChoiceInput 'What game to backup?' ($GameSaves | Select-Object -ExpandProperty Keys)
 
 	# save to backup
-	$Save       = Get-ChildItem -Directory (AbsolutePath $GameSaves[$BackupGame.Answer])
+	$Save       = Get-ChildItem (AbsolutePath $GameSaves[$BackupGame.Answer])
 	$BackupSave = Read-MultipleChoiceInput 'What save to backup?' $Save
 
 	BackupSave $BackupGame.Answer $BackupSave.Answer $JSON.BackupPath
