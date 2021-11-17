@@ -49,25 +49,25 @@ function AbsolutePath($Path)
 # backups a game save
 function BackupSave($GameName, $GameSavePath, $BackupPath)
 {
-	$BackupPath   = AbsolutePath $BackupPath
-	$GameSavePath = AbsolutePath $GameSavePath
-	Write-Host "Backing up $GameName @ ($GameSavePath)"
+	$backupPath   = AbsolutePath $BagkupPath
+	$gameSavePath = AbsolutePath $GameSavePath
+	Write-Host "Backing up $GameName @ ($gameSavePath)"
 
-	Write-Host "Checking if backup path ($BackupPath) exists..."
-	if (!(Test-Path $BackupPath))
+	Write-Host "Checking if backup path ($backupPath) exists..."
+	if (!(Test-Path $backupPath))
 	{
-		Write-Host "Creating backup folder ($BackupPath)"
-		New-Item -ItemType Directory $BackupPath
+		Write-Host "Creating backup folder ($backupPath)"
+		New-Item -ItemType Directory $backupPath
 	}
 
 	# file name format: GAME.SAVE.zip
-	$SaveName   = Split-Path $GameSavePath -leaf
+	$saveName   = Split-Path $gameSavePath -leaf
 	# removes whitespace from game and save names
-	$BackupName = "$($GameName.Replace(' ', '')).$($SaveName.Replace(' ', '')).zip"
+	$backupName = "$($GameName.Replace(' ', '')).$($saveName.Replace(' ', '')).zip"
 
-	$BackupFilePath = Join-Path $BackupPath $BackupName
-	Write-Host "Creating backup @ ($BackupFilePath)"
-	Compress-Archive -Force -LiteralPath $GameSavePath -DestinationPath $BackupFilePath
+	$backupFilePath = Join-Path $backupPath $backupName
+	Write-Host "Creating backup @ ($backupFilePath)"
+	Compress-Archive -Force -LiteralPath $gameSavePath -DestinationPath $backupFilePath
 }
 
 function main
