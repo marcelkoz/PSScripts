@@ -7,14 +7,14 @@ Import-Module .\..\PSScriptUtil.psm1
 
 # global variables
 $Global = @{
-	'JSONFilePath' = '.\GameBackup.json'
-	'BrowserPath'  = "$ProgFiles\Google\Chrome\Application\chrome.exe"
+	'JSONFilePath' = './GameBackup.json'
+	'BrowserPath'  = "$ProgFiles/Google/Chrome/Application/chrome.exe"
 	'FolderURL'    = 'https://drive.google.com/drive/folders/1u-OJ5bVZ0Gaf2Ew-FCCtEtXF74drXao4'
 }
 
 $PathVars = @{
 	'$HOME'     = $HOME
-	'$ROAMING'  = "$env:APPDATA"
+	'$ROAMING'  = $env:APPDATA
 	'$PROGS'    = $ProgFiles
 	# prevents from '$PROGS' being incorrectly selected
 	'$x86PROGS' = $ProgFilesx86
@@ -62,7 +62,7 @@ function BackupSave($GameName, $GameSavePath, $BackupPath)
 	}
 
 	# file name format: GAME.SAVE.zip
-	$saveName   = Split-Path $gameSavePath -leaf
+	$saveName = Split-Path $gameSavePath -leaf
 	# removes whitespace from game and save names
 	$backupName = "$($GameName.Replace(' ', '')).$($saveName.Replace(' ', '')).zip"
 
