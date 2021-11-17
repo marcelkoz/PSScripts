@@ -14,6 +14,7 @@ $Global = @{
 
 $PathVars = @{
 	'$HOME'     = $HOME
+	'$ROAMING'  = "$env:APPDATA"
 	'$PROGS'    = $ProgFiles
 	# prevents from '$PROGS' being incorrectly selected
 	'$x86PROGS' = $ProgFilesx86
@@ -49,7 +50,7 @@ function AbsolutePath($Path)
 # backups a game save
 function BackupSave($GameName, $GameSavePath, $BackupPath)
 {
-	$backupPath   = AbsolutePath $BagkupPath
+	$backupPath   = AbsolutePath $BackupPath
 	$gameSavePath = AbsolutePath $GameSavePath
 	Write-Host "Backing up $GameName @ ($gameSavePath)"
 
