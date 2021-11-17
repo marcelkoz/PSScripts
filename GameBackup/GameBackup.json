@@ -2,8 +2,8 @@
     "BackupPath": "$HOME/Documents/GameBackups",
 
     "GameSaves": {
-        "Minecraft":      "$HOME/AppData/Roaming/.minecraft/saves",
-        "Stardew Valley": "$HOME/AppData/Roaming/StardewValley/Saves",
+        "Minecraft":      "$ROAMING/.minecraft/saves",
+        "Stardew Valley": "$ROAMING/StardewValley/Saves",
         "Deathloop":      "$HOME/Saved Games/Arkane Studios/Deathloop/base/savegame",
         "Doom Eternal":   "$x86PROGS/Steam/userdata/1006743056/782330/remote"
     }
