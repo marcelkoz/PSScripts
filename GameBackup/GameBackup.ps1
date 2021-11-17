@@ -12,6 +12,13 @@ $Global = @{
 	'FolderURL'    = 'https://drive.google.com/drive/folders/1u-OJ5bVZ0Gaf2Ew-FCCtEtXF74drXao4'
 }
 
+$PathVars = @{
+	'$HOME'     = $HOME
+	'$PROGS'    = $ProgFiles
+	# prevents from '$PROGS' being incorrectly selected
+	'$x86PROGS' = $ProgFilesx86
+}
+
 # converts a custom object - created by json commands into an easy to use hashtable
 function ConvertTo-HashTable($CustomObject)
 {
@@ -25,13 +32,18 @@ function ConvertTo-HashTable($CustomObject)
 # converts path with $HOME to be absolute
 function AbsolutePath($Path)
 {
-	$Path = $Path.Trim()
-	if ($Path.StartsWith('$HOME'))
+	$path = $Path.Trim()
+	$vars = $PathVars | Select-Object -ExpandProperty Keys
+	foreach ($var in $vars)
 	{
-		$Path = Join-Path $HOME $Path.Substring(5)
+		if ($path.StartsWith($var))
+		{
+			$path = Join-Path $($PathVars[$var]) $path.Substring($var.Length)
+			break
+		}
 	}
 
-	return $Path
+	return $path
 }
 
 # backups a game save
