@@ -1,5 +1,5 @@
 #
-# InstalledProgramsDump.ps1
+# Get-InstalledPrograms.ps1
 #
 
 param (
