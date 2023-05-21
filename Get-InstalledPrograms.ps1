@@ -1,3 +1,44 @@
+<#
+.SYNOPSIS
+Get installed software on the local machine. 
+
+.DESCRIPTION
+Get installed software on the local machine. Both traditional installer programs and Microsoft Store Appx packages are output with Name, Publisher, Version, Location and Type available to filter. Common queries are shown in the Examples section. The script is also able to dump the output into a json file with the -Path parameter as shown in Examples.
+
+.EXAMPLE
+./Get-InstalledPrograms.ps1 -Path installed.json
+Dump all installed programs into json file
+
+.EXAMPLE
+./Get-InstalledPrograms.ps1 | ConvertTo-Json | Out-File installed.json
+Dump all installed programs into json file manually (when filtering output)
+
+.EXAMPLE
+./Get-InstalledPrograms.ps1 | where { $_.Type -ne 'Store' }
+Filter out Microsoft Store apps
+
+.EXAMPLE
+./Get-InstalledPrograms.ps1 | where { $_.Publisher -notlike 'Microsoft*' }
+Filter out Microsoft apps
+
+.EXAMPLE
+./Get-InstalledPrograms.ps1 | where { $_.Name -like 'Python*' }
+View all Python installations
+
+.EXAMPLE
+./Get-InstalledPrograms.ps1 | where { $_.Name -like 'Python*' -and $_.Version -like '3.*' }
+View all 3.x Python installations
+
+.INPUTS
+System.String
+
+.OUTPUTS
+Get-InstalledPrograms.Program[]
+
+.LINK
+https://github.com/marcelkoz/PSScripts
+#>
+
 #
 # Get-InstalledPrograms.ps1
 #
