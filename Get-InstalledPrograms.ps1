@@ -12,6 +12,7 @@ class Program
 {
     [string] $Name
     [string] $Type
+    [string] $Version
     [string] $Publisher
     [string] $Location
 }
@@ -31,12 +32,27 @@ function ConvertRegistryPrograms($programs)
         $object = [Program]::new()
         $object.Name = (ParseRegistryProgamName $program)
         $object.Type = 'Installer'
+        $object.Version = (ParseRegistryVersion $program)
         $object.Publisher = $program.Publisher
         $object.Location = $program.InstallLocation
 
         $converted.Add($object)
     }
     return $converted.ToArray()
+}
+
+function ParseRegistryVersion($program)
+{
+    $major = $program.VersionMajor
+    $minor = $program.VersionMinor
+    if ($null -eq $major)
+    {
+        return ''
+    }
+    else
+    {
+        return "$major.$minor"
+    }
 }
 
 function ParseRegistryProgamName($program)
@@ -65,6 +81,7 @@ function ConvertStorePrograms($programs)
         $object = [Program]::new()
         $object.Name = $program.Name
         $object.Type = 'Store'
+        $object.Version = $program.Version
         $object.Publisher = (ParseStorePublisherName $program.Publisher)
         $object.Location = $program.InstallLocation
 
